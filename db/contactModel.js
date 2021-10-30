@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const { Schema } = mongoose
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
 const contactShema = new Schema({
   name: {
@@ -18,10 +18,14 @@ const contactShema = new Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now()
+    default: Date.now(),
+  },
+  owner: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'user',
   }
-})
+});
 
-const contacts = mongoose.model('contact', contactShema)
+const contacts = mongoose.model('contact', contactShema);
 
-module.exports = { contacts }
+module.exports = { contacts };

@@ -1,8 +1,8 @@
-const { contacts } = require('../../db/model');
+const { contacts } = require("../../db/contactModel");
 
 const listContacts = async () => {
-  const allContacts = await contacts.find()
-  return (allContacts)
-}
+  const allContacts = await contacts.find();
+  return allContacts;
+};
 
-module.exports = { listContacts }
+module.exports = { listContacts };

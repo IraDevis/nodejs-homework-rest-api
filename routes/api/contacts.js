@@ -11,12 +11,13 @@ const {
 } = require('../../controllers/contacts');
 
 const validation = require('../../middlewares/validation');
+const { authorization } = require('../../middlewares/auth');
 
-router.get('/', getAll)
-router.get('/:contactId', getById)
-router.post('/', validation.postValid, add)
-router.delete('/:contactId', deleteById)
-router.patch('/:contactId', validation.patchValid, updateById)
-router.patch('/:contactId/favorite', validation.patchValid, patchFavorite)
+router.get('/', authorization, getAll)
+router.get('/:contactId', authorization, getById)
+router.post('/', authorization, validation.postValid, add)
+router.delete('/:contactId', authorization, deleteById)
+router.patch('/:contactId', authorization, validation.patchValid, updateById)
+router.patch('/:contactId/favorite', authorization, validation.patchValid, patchFavorite)
 
 module.exports = router
