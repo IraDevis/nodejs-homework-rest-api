@@ -6,7 +6,7 @@ const { User } = require('../../db/userModel');
 // const { SECRET_KEY } = process.env
 
 const login = async ({ email, password }) => {
-  const account = await User.findOne({ email });
+  const account = await User.findOne({ email, verify: true });
   if (!account) {
     return account;
   }
