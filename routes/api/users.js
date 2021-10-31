@@ -6,7 +6,9 @@ const {
   loginController,
   logoutController,
   register,
-  avatarController
+  avatarController,
+  verifyController,
+  verifyAgainController
 } = require('../../controllers/users');
 
 const validation = require('../../middlewares/validation');
@@ -17,6 +19,8 @@ router.post('/signup', validation.userValid, register)
 router.post('/login', validation.userValid, loginController)
 router.post('/logout', authorization, logoutController)
 router.get('/current', authorization, getUser)
-router.patch('/avatars', authorization, upload.single('avatar'), avatarController);
+router.patch('/avatars', authorization, upload.single('avatar'), avatarController)
+router.post('/verify', validation.verifyValid, verifyAgainController)
+router.get('/verify/:verificationToken', verifyController)
 
 module.exports = router

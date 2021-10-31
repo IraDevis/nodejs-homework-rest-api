@@ -50,4 +50,17 @@ const userValid = (req, res, next) => {
   next()
 }
 
-module.exports = { postValid, patchValid, userValid }
+const verifyValid = async (req, res, next) => {
+  const verifySchema = Joi.object({
+    email: Joi.string().required()
+  })
+
+  const result = verifySchema.validate(req.body)
+
+  if (result.error) {
+    return res.status(400).json({ message: 'missing required fields' })
+  }
+  next()
+}
+
+module.exports = { postValid, patchValid, userValid, verifyValid }
